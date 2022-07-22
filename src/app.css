@@ -11,7 +11,7 @@ a {
 }
 
 h1 {
-  @apply text-6xl mb-6 font-bold;
+  @apply text-2xl md:text-6xl mb-2 md:mb-6 font-bold;
   font-family: "Merriweather", sans-serif;
 }
 
@@ -24,6 +24,13 @@ button.cta {
   @apply border-accent border text-accent font-bold p-2 focus:bg-accent hover:bg-accent hover:text-white focus:text-white flex items-center justify-center gap-2 transition-colors ease-out duration-300;
 }
 
+.fade-in {
+  animation: fadeIn 0.8s forwards;
+}
+.fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+
 @keyframes MoveLeftRight {
   0%,
   100% {
@@ -31,5 +38,43 @@ button.cta {
   }
   50% {
     transform: translateX(20px);
+  }
+}
+
+@keyframes MoveNavBgUpDown {
+  0%,
+  100% {
+    top: 80vh;
+  }
+  50% {
+    top: 82vh;
+  }
+}
+
+@keyframes MoveNavBgSide {
+  0%,
+  100% {
+    background-position-x: 0vw;
+  }
+  50% {
+    background-position-x: 2vw;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    tranform: translateY(-1rem);
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    tranform: translateY(1rem);
+    opacity: 1;
   }
 }

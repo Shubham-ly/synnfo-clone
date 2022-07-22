@@ -1,44 +1,67 @@
 <script>
   import HamMenu from "./HamMenu.svelte";
-  import { Link } from "svelte-navigator";
+  import { Link, useLocation } from "svelte-navigator";
 
   export let open = false;
   let showServices = false;
+
+  const location = useLocation();
+  let currentPath = "/";
+  $: currentPath = $location.pathname;
+
+  const routes = [
+    { name: "home", path: "/" },
+    { name: "about us", path: "/about_us" },
+    { name: "services", path: "/services" },
+    { name: "contact us", path: "/contact_us" },
+  ];
 </script>
 
 <header>
-  <nav class="flex p-4 items-center justify-between">
+  <nav class="flex p-3 md:p-4 items-center justify-between">
     <img
       id="logo"
       src="https://www.synnfo.com.au/images/group-2.svg"
       alt="synnfo-logo"
     />
-    <div class="flex nav-link-container">
-      <ul class="flex w-full justify-around gap-10 items-center mr-4">
-        <li><a href="/" class="text-accent">Home</a></li>
-        <li><a href="/">About us</a></li>
-        <li
-          class="relative"
-          on:mouseleave={() => (showServices = false)}
-          on:blur={() => (showServices = false)}
-          on:mouseover={() => (showServices = true)}
-          on:focus={() => (showServices = true)}
-        >
-          <a href="/">Services</a>
-          <div
-            class={`${
-              showServices ? "flex" : "hidden"
-            } absolute flex-col rounded-xl left-2/4 -translate-x-2/4 w-40 services services mt-3 z-10 bg-[#fff5f0]`}
-          >
-            <a class="rounded-t-xl" href="/">Cloud Services</a>
-            <a href="/">Cyber Security</a>
-            <a href="/">Software Testing</a>
-            <a href="/">Data Analytics & Insights</a>
-            <a href="/">Digital Solutions</a>
-            <a class="rounded-b-xl" href="/">Managed IT Services</a>
-          </div>
-        </li>
-        <li class="mr-16"><Link to="/contact_us">Contact us</Link></li>
+    <div class="flex nav-link-container items-center gap-6 w-full justify-end">
+      <ul
+        class="gap-4 opacity-0 hidden md:flex md:opacity-100 md:gap-10 items-center mr-4"
+      >
+        {#each routes as route}
+          {#if route.name === "services"}
+            <li
+              class="relative"
+              on:mouseleave={() => (showServices = false)}
+              on:blur={() => (showServices = false)}
+              on:mouseover={() => (showServices = true)}
+              on:focus={() => (showServices = true)}
+            >
+              <Link to="/services">Services</Link>
+              <div
+                class={`${
+                  showServices ? "flex" : "hidden"
+                } absolute flex-col rounded-xl left-2/4 -translate-x-2/4 w-40 services services mt-3 z-10 bg-[#fff5f0]`}
+              >
+                <a class="rounded-t-xl" href="/">Cloud Services</a>
+                <a href="/">Cyber Security</a>
+                <a href="/">Software Testing</a>
+                <a href="/">Data Analytics & Insights</a>
+                <a href="/">Digital Solutions</a>
+                <a class="rounded-b-xl" href="/">Managed IT Services</a>
+              </div>
+            </li>
+          {:else}
+            <li>
+              <Link
+                to={route.path}
+                class={`${
+                  currentPath === route.path ? "text-accent" : "text-black"
+                } uppercase`}>{route.name}</Link
+              >
+            </li>
+          {/if}
+        {/each}
       </ul>
       <HamMenu on:click {open} />
     </div>
@@ -49,7 +72,7 @@
   nav {
     max-width: 1600px;
     margin: 0 auto;
-    padding-right: 11%;
+    @apply h-24;
   }
   #logo {
     margin-left: 11%;

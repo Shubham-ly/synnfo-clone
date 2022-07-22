@@ -6,6 +6,9 @@ const config = {
       colors: {
         accent: "#fe5814",
       },
+      maxWidth: {
+        screen: "100vw",
+      },
       keyframes: {
         cloudMovement: {
           "0%, 100%": { top: "80vh" },
@@ -14,6 +17,12 @@ const config = {
       },
       animation: {
         cloudMovement: "cloudMovement 1s linear infinte",
+      },
+      screens: {
+        md: "901px",
+      },
+      height: {
+        "screen-1/4": "25vh",
       },
     },
   },

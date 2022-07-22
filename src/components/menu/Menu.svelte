@@ -1,5 +1,25 @@
-<div class="flex justify-center items-start h-full gap-36 p-24 z-50">
-  <div>
+<script>
+  export let open = true;
+  export let onNavLinkClicked;
+  import { Link, useLocation } from "svelte-navigator";
+  const location = useLocation();
+  let currentPath = "/";
+  $: currentPath = $location.pathname;
+
+  const routes = [
+    { name: "home", path: "/" },
+    { name: "about us", path: "/about_us" },
+    { name: "services", path: "/services" },
+    { name: "career", path: "/career" },
+    { name: "blogs", path: "/blogs" },
+    { name: "contact us", path: "/contact_us" },
+  ];
+</script>
+
+<div
+  class="flex justify-center items-start gap-36 h-full w-full p-24 z-50 bg-white"
+>
+  <div class="hidden md:block">
     <div>
       <h3 class="mb-4">Services</h3>
       <ul>
@@ -57,20 +77,44 @@
       </div>
     </div>
   </div>
-  <div>
+  <div class="flex flex-col justify-around self-center gap-2">
     <h3>Menu</h3>
-    <h1><a class="text-accent" href="/">Home</a></h1>
-    <h1><a href="/">About Us</a></h1>
-    <h1><a href="/">Services</a></h1>
-    <h1><a href="/">Career</a></h1>
-    <h1><a href="/">Blogs</a></h1>
-    <h1><a href="/">Contact Us</a></h1>
+    {#each routes as route}
+      <h1 on:click={onNavLinkClicked}>
+        <Link
+          class={`${
+            route.path === currentPath ? "text-accent" : "text-black"
+          } capitalize`}
+          to={route.path}>{route.name}</Link
+        >
+      </h1>
+    {/each}
   </div>
+
+  <div
+    id="nav-list"
+    style={`background-position: ${open ? "0vw 77vh" : "-20vw 100vh"};
+  background-size: 120%; top: ${open ? "0" : "5vh"}`}
+    class={`fixed bg-no-repeat bg-cover
+transition-all duration-500 ease-in-out
+h-full w-full pointer-events-none ${
+      open ? "opacity-100 visible" : "opacity-0 invisible"
+    }`}
+  />
+
+  <div
+    id="nav-img"
+    class={`fixed max-w-screen w-full h-screen-1/4 
+    transition-all ease-in-out duration-700 
+    bg-no-repeat bg-cover overflow-y-visible ${
+      open ? "top-[80vh] left-0" : "top-[101vh] left-[20vw]"
+    }`}
+  />
 </div>
 
 <style lang="postcss">
   h3 {
-    @apply text-accent font-semibold text-xl mb-4 uppercase;
+    @apply text-accent text-center md:text-left font-semibold text-sm md:text-xl mb-6 md:mb-4 uppercase;
   }
   li {
     @apply text-lg;
@@ -84,7 +128,15 @@
     @apply mr-4;
   }
   h1 {
-    @apply text-6xl mb-6 font-bold;
+    @apply text-2xl text-center md:text-left md:text-6xl mb-6 font-bold;
     font-family: "Merriweather", sans-serif;
+  }
+  #nav-img {
+    background-image: url("https://www.synnfo.com.au/images/homepagecloudbig.svg");
+    animation: MoveNavBgUpDown 7s linear infinite;
+  }
+  #nav-list {
+    background-image: url("https://www.synnfo.com.au/images/homepagecloudsmall.svg");
+    animation: MoveNavBgSide 7s linear infinite;
   }
 </style>

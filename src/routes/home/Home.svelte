@@ -1,25 +1,37 @@
-<div class="flex p-4 items-center justify-center mt-32 mx-auto">
-  <div>
-    <h1>We engineer <br /> brilliant <br /> solutions</h1>
-    <button class="cta"
-      >Let's collaborate <i class="material-icons">arrow_forward</i>
-    </button>
-  </div>
-  <div class="absolute bottom-0 h-2/5">
-    <img
-      style="animation: MoveLeftRight 7s linear infinite"
-      class=" w-screen object-contain"
-      src="/images/homepage-cloud-small.svg"
-      alt="homepage cloud small"
-    />
-    <img
-      style="animation: MoveLeftRight 7s linear infinite"
-      class="w-screen object-contain"
-      src="/images/homepage-cloud-big.svg"
-      alt="homepage cloud big"
-    />
-  </div>
-</div>
+<script>
+  import { onMount } from "svelte";
 
-<style lang="postcss">
-</style>
+  import Anim1 from "./Anim1.svelte";
+  import Anim2 from "./Anim2.svelte";
+  import Anim3 from "./Anim3.svelte";
+
+  onMount(() => {
+    let currentSlideIndex = 0;
+    const slides = [...document.querySelectorAll("#sectionA")];
+    const titles = [...document.querySelectorAll(".section-title")];
+    function showSlides() {
+      for (let i = 0; i < slides.length; i++) {
+        titles[i].classList.remove("fade-in");
+        titles[i].classList.add("fade-out");
+        slides[i].style.display = "none";
+        slides[i].style.opacity = 0;
+        slides[i].style.visibility = "hidden";
+        slides[i].querySelector("#anim").stop();
+      }
+      currentSlideIndex++;
+      if (currentSlideIndex > slides.length) currentSlideIndex = 1;
+      slides[currentSlideIndex - 1].style.display = "block";
+      slides[currentSlideIndex - 1].style.opacity = 1;
+      slides[currentSlideIndex - 1].style.visibility = "visible";
+      titles[currentSlideIndex - 1].classList.remove("fade-out");
+      titles[currentSlideIndex - 1].classList.add("fade-in");
+      slides[currentSlideIndex - 1].querySelector("#anim").play();
+      setTimeout(showSlides, 7000);
+    }
+    showSlides();
+  });
+</script>
+
+<Anim1 />
+<!-- <Anim2 />
+<Anim3 /> -->
