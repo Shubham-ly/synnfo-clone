@@ -17,11 +17,15 @@
 </script>
 
 <div
-  class="flex justify-center items-start gap-36 h-full w-full p-24 z-50 bg-white"
+  class="flex justify-between items-baseline h-full w-full z-50 bg-white pt-20"
 >
-  <div class="hidden md:block">
+  <div id="nav-list" class:open />
+
+  <div id="nav-img" class:open />
+
+  <div style="padding-left: 18%" class="hidden md:block flex-1 z-50">
     <div>
-      <h3 class="mb-4">Services</h3>
+      <h3 class="mb-2">Services</h3>
       <ul>
         <li><a href="/">Cloud Services</a></li>
         <li><a href="/">Cyber Security</a></li>
@@ -32,14 +36,14 @@
       </ul>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-2">
       <h3>Location</h3>
       <p style="max-width: 15ch" class="text-opacity-50 text-black text-sm">
         Level 27, 101 Collins St Melbourne, VIC, Australia 3000
       </p>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-2">
       <h3>Contact</h3>
       <ul>
         <li>
@@ -56,7 +60,7 @@
       </ul>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-2">
       <h3>Social Media</h3>
       <div class="flex gap-4">
         <a
@@ -77,7 +81,7 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-col justify-around self-center gap-2">
+  <div class="flex flex-1 flex-col justify-around gap-2 z-50">
     <h3>Menu</h3>
     {#each routes as route}
       <h1 on:click={onNavLinkClicked}>
@@ -90,31 +94,11 @@
       </h1>
     {/each}
   </div>
-
-  <div
-    id="nav-list"
-    style={`background-position: ${open ? "0vw 77vh" : "-20vw 100vh"};
-  background-size: 120%; top: ${open ? "0" : "5vh"}`}
-    class={`fixed bg-no-repeat bg-cover
-transition-all duration-500 ease-in-out
-h-full w-full pointer-events-none ${
-      open ? "opacity-100 visible" : "opacity-0 invisible"
-    }`}
-  />
-
-  <div
-    id="nav-img"
-    class={`fixed max-w-screen w-full h-screen-1/4 
-    transition-all ease-in-out duration-700 
-    bg-no-repeat bg-cover overflow-y-visible ${
-      open ? "top-[80vh] left-0" : "top-[101vh] left-[20vw]"
-    }`}
-  />
 </div>
 
 <style lang="postcss">
   h3 {
-    @apply text-accent text-center md:text-left font-semibold text-sm md:text-xl mb-6 md:mb-4 uppercase;
+    @apply text-accent text-center md:text-left font-semibold text-sm md:text-xl mb-4 uppercase;
   }
   li {
     @apply text-lg;
@@ -128,15 +112,54 @@ h-full w-full pointer-events-none ${
     @apply mr-4;
   }
   h1 {
-    @apply text-2xl text-center md:text-left md:text-6xl mb-6 font-bold;
+    @apply text-2xl text-center md:text-left md:text-5xl mb-6 font-bold;
     font-family: "Merriweather", sans-serif;
   }
   #nav-img {
     background-image: url("https://www.synnfo.com.au/images/homepagecloudbig.svg");
     animation: MoveNavBgUpDown 7s linear infinite;
+    left: 20vw;
+    top: 101vw;
+    @apply fixed max-w-screen w-full h-screen-1/4 
+    transition-all ease-in-out duration-700 
+    bg-no-repeat bg-cover overflow-y-visible;
   }
+
+  #nav-img.open {
+    top: 80vh;
+    left: 0;
+  }
+
+  @media screen and (min-width: 900px) {
+    #nav-img.open {
+      top: 76vh;
+    }
+  }
+
   #nav-list {
     background-image: url("https://www.synnfo.com.au/images/homepagecloudsmall.svg");
     animation: MoveNavBgSide 7s linear infinite;
+    background-position: -20vw 100vh;
+    background-size: 120%;
+    top: 5vh;
+    opacity: 0;
+    visibility: hidden;
+    @apply fixed bg-no-repeat bg-cover
+      transition-all duration-500 ease-in-out
+      h-full w-full pointer-events-none;
+  }
+
+  #nav-list.open {
+    background-position: 0vw 77vh;
+    background-size: 120%;
+    top: 0;
+    opacity: 100%;
+    visibility: visible;
+  }
+  @media screen and (min-width: 900px) {
+    #nav-list.open {
+      background-size: 120%;
+      background-position: 0vw 68vh;
+    }
   }
 </style>
