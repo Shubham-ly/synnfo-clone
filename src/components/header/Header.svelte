@@ -18,15 +18,17 @@
 </script>
 
 <header>
-  <nav class="flex p-3 md:p-4 items-center justify-between">
+  <nav class="flex p-2 md:p-4 items-center justify-between">
     <img
       id="logo"
       src="https://www.synnfo.com.au/images/group-2.svg"
       alt="synnfo-logo"
     />
-    <div class="flex nav-link-container items-center gap-6 w-full justify-end">
+    <div
+      class="flex nav-link-container items-center gap-4 pr-4 md:pr-8 w-full justify-end md:mr-24"
+    >
       <ul
-        class="gap-4 opacity-0 hidden md:flex md:opacity-100 md:gap-10 items-center mr-4"
+        class="gap-4 opacity-0 hidden md:flex md:opacity-100 md:gap-8 items-center mr-10"
       >
         {#each routes as route}
           {#if route.name === "services"}
@@ -72,7 +74,7 @@
   nav {
     max-width: 1600px;
     margin: 0 auto;
-    @apply h-24;
+    @apply h-16 md:h-20;
   }
   #logo {
     margin-left: 11%;

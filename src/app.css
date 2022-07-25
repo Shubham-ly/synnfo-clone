@@ -19,9 +19,11 @@ h1 {
   @apply bg-accent text-white;
 }
 
-button.cta {
+button.cta,
+a.cta {
   font-family: "Merriweather", sans-serif;
-  @apply border-accent border text-accent font-bold p-2 focus:bg-accent hover:bg-accent hover:text-white focus:text-white flex items-center justify-center gap-2 transition-colors ease-out duration-300;
+  text-decoration: none;
+  @apply border-accent border text-accent font-bold p-1 px-3 focus:bg-accent hover:bg-accent hover:text-white focus:text-white flex items-center justify-center gap-2 transition-colors ease-out duration-300 md:text-xs;
 }
 
 .fade-in {
@@ -38,6 +40,16 @@ button.cta {
   }
   50% {
     transform: translateX(20px);
+  }
+}
+
+@keyframes MoveUpDown {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(25px);
   }
 }
 

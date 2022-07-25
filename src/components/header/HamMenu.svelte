@@ -2,7 +2,7 @@
   export let open = false;
 </script>
 
-<div on:click style="z-index: 99" class="h-12 w-12 relative ">
+<div on:click style="z-index: 99" class="h-12 w-12 relative md:px-6">
   <div class:open id="ham-strip-1" class="ham-strip top-5 md:top-3.5" />
   <div class:open id="ham-strip-2" class="ham-strip bottom-5 md:bottom-3.5" />
 </div>
