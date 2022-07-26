@@ -14,17 +14,3 @@
 <SectionD />
 <SectionE />
 <SectionF />
-
-<style lang="postcss">
-  :global(.container) {
-    padding: 1rem 8.9%;
-  }
-
-  @media screen and (min-width: 900px) {
-    :global(.container) {
-      margin: 0 auto;
-      max-width: 1600px !important;
-      padding: 1rem 11%;
-    }
-  }
-</style>

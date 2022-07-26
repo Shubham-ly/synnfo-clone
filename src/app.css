@@ -32,6 +32,17 @@ a.cta {
 .fade-out {
   animation: fadeOut 0.3s forwards;
 }
+.container {
+  padding: 1rem 8.9%;
+}
+
+@media screen and (min-width: 900px) {
+  .container {
+    margin: 0 auto;
+    max-width: 1600px !important;
+    padding: 1rem 11%;
+  }
+}
 
 @keyframes MoveLeftRight {
   0%,
