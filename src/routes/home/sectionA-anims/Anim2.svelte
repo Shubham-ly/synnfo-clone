@@ -78,7 +78,6 @@
   }
   .section-title {
     letter-spacing: 2px;
-    margin-bottom: 2em;
   }
 
   .anim-container {
