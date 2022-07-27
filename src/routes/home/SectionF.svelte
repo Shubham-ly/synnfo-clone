@@ -69,12 +69,12 @@
   }
 
   @media screen and (min-width: 900px) {
-    #sectionF {
-      height: 134.1rem;
-    }
     #mail {
       height: 95%;
       right: 6%;
+    }
+    .wrapper {
+      background-image: none;
     }
   }
 </style>

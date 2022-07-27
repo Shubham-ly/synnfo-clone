@@ -58,7 +58,7 @@
 </script>
 
 <main class="p-8 md:px-[11%] overflow-hidden">
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 mt-8">
     <h4 class="uppercase text-accent text-sm md:text-lg font-bold">
       Engagement model
     </h4>
@@ -185,6 +185,7 @@
       flex: 1;
       width: 40%;
       max-width: 450px;
+      margin-right: auto;
     }
   }
   #moonBack1 {

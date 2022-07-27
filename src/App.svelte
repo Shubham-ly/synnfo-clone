@@ -3,6 +3,7 @@
   import { Router, Route } from "svelte-navigator";
   import { Home, Contact } from "./routes";
   import { onMount } from "svelte";
+  import Footer from "./components/footer/Footer.svelte";
   let navOpen = false;
   let scrollToTopBtn = null;
 
@@ -39,6 +40,7 @@
 >
   <img src="https://www.synnfo.com.au/images/back-to-top-btn.svg" alt="Go Up" />
 </button>
+<Footer />
 
 <style lang="postcss">
   .scroll-top {

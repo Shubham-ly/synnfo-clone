@@ -73,8 +73,9 @@
     @apply text-center md:text-left;
   }
   #container {
-    max-width: 1600px !important;
+    /* max-width: 1600px !important; */
     margin-top: 20px;
+    padding-inline: 11%;
   }
   .section-title {
     letter-spacing: 2px;
